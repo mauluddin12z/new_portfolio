@@ -13,7 +13,7 @@ export default function HeroSection() {
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
         {/* LEFT CONTENT */}
         <div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight font-serif">
+          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
             Hello,
             <br />
             I’m <span className="text-primary">Hidayat Mauluddin</span>
