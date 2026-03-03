@@ -13,13 +13,13 @@ export default function HeroSection() {
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
         {/* LEFT CONTENT */}
         <div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight font-serif">
             Hello,
             <br />
             I’m <span className="text-primary">Hidayat Mauluddin</span>
           </h1>
 
-          <p className="text-secondary md:mt-8 leading-relaxed max-w-xl">
+          <p className="text-secondary mt-4 md:mt-8 leading-relaxed max-w-xl">
             I am a Fullstack Web Developer specializing in building scalable,
             high-performance web applications using modern technologies such as
             HTML, CSS, JavaScript, Node.js, Express.js and Next.js.
@@ -66,7 +66,7 @@ export default function HeroSection() {
             alt="Eclipse Background"
             width={1000}
             height={1000}
-            className="absolute inset-0"
+            className="absolute inset-0 opacity-70"
             priority
           />
 
