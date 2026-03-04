@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="w-full scroll-smooth">
       <div
-        className="fixed w-full h-6/12 bg-linear-to-r from-blue-400 via-indigo-400 to-purple-400 opacity-20"
+        className="fixed top-0 w-full h-6/12 bg-linear-to-r from-blue-400 via-indigo-400 to-purple-400 opacity-20"
         style={{
           WebkitMaskImage:
             "linear-gradient(to bottom, #282828 0%, rgba(255, 255, 255, 0) 70%)",

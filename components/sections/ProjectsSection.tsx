@@ -40,7 +40,7 @@ export default function ProjectsSection() {
         </div>
 
         {projects.length > INITIAL_COUNT && (
-          <div className="flex justify-center">
+          <div data-aos="fade-up" className="flex justify-center">
             <button
               onClick={() => setShowAll(!showAll)}
               className="px-8 py-3 rounded-md bg-primary text-white font-medium hover:bg-primaryDark transition duration-300"

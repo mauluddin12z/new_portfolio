@@ -3,8 +3,14 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { socialLinks } from "@/data/socialLinks";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function HeroSection() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <section
       id="Home"
@@ -13,19 +19,18 @@ export default function HeroSection() {
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
         {/* LEFT CONTENT */}
         <div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+          <h1 data-aos="fade-right" className="font-serif text-4xl md:text-5xl font-bold text-white leading-tight">
             Hello,
-            <br />
-            I’m <span className="text-primary">Hidayat Mauluddin</span>
+            <br />I am <span className="text-primary">Hidayat Mauluddin</span>
           </h1>
 
-          <p className="text-secondary mt-4 md:mt-8 leading-relaxed max-w-xl">
+          <p data-aos="fade-right" className="text-secondary mt-4 md:mt-8 leading-relaxed max-w-xl">
             I am a Fullstack Web Developer specializing in building scalable,
             high-performance web applications using modern technologies such as
             HTML, CSS, JavaScript, Node.js, Express.js and Next.js.
           </p>
 
-          <div className="flex items-center gap-6 mt-12 flex-wrap">
+          <div data-aos="fade-up" className="flex items-center gap-6 mt-12 flex-wrap">
             <a
               href="mailto:mauludindayat@gmail.com"
               className="bg-primary hover:bg-primary-dark px-8 py-4 rounded-md font-medium text-white transition duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/40"
@@ -34,7 +39,7 @@ export default function HeroSection() {
               Contact Me
             </a>
 
-            <div className="flex gap-4 text-secondary">
+            <div data-aos="fade-up" className="flex gap-4 text-secondary">
               {socialLinks.map(({ name, href, icon }) => (
                 <a
                   key={name}
@@ -52,7 +57,7 @@ export default function HeroSection() {
         </div>
 
         {/* RIGHT CONTENT */}
-        <div className="md:flex hidden relative justify-center items-center">
+        <div data-aos="fade-up" className="md:flex hidden relative justify-center items-center">
           <Image
             src="/Eclipse.svg"
             alt="Eclipse"
