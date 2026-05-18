@@ -47,7 +47,7 @@ export function Contact() {
               </a>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
               <ContactItem
                 icon={Mail}
                 label="Email"

@@ -1,13 +1,8 @@
 import { ChatAPIResponse } from "@/types/chat";
 
-const API_URL = process.env.NEXT_PUBLIC_CHATBOT_API_URL;
-
-if (!API_URL) {
-  throw new Error("NEXT_PUBLIC_CHATBOT_API_URL is not defined");
-}
 
 export async function sendChatMessage(message: string) {
-  const res = await fetch(`${API_URL}/api/chat`, {
+  const res = await fetch(`/api/chat`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -18,7 +18,7 @@ import { contacts } from "@/lib/data";
 
 export function Hero() {
   return (
-    <section id="top" className="relative pt-48 pb-24 overflow-hidden min-h-screen">
+    <section id="top" className="relative pt-36 md:pt-48 pb-24 overflow-hidden min-h-screen">
       <div className="absolute inset-0 grid-bg pointer-events-none" />
       <div className="absolute inset-0 noise" />
 
