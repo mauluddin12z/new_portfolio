@@ -1,29 +1,28 @@
-import Chatbot from "@/components/Chatbot";
-import NavigationBar from "@/components/layout/NavigationBar";
-import CertificatesSection from "@/components/sections/CertificatesSection";
-import HeroSection from "@/components/sections/HeroSection";
-import ProjectsSection from "@/components/sections/ProjectsSection";
-import SkillsSection from "@/components/sections/SkillsSection";
+"use client";
 
-export default function Home() {
+import { Chatbot } from "@/components/Chatbot";
+
+import { Nav } from "@/components/Nav";
+import { Hero } from "@/components/Hero";
+import { Work } from "@/components/Work";
+import { Experience } from "@/components/Experience";
+import { Stack } from "@/components/Stack";
+import { Certs } from "@/components/Certs";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
+
+export default function Page() {
   return (
-    <main className="w-full scroll-smooth">
-      <div
-        className="fixed top-0 w-full h-6/12 bg-linear-to-r from-blue-400 via-indigo-400 to-purple-400 opacity-20"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(to bottom, #282828 0%, rgba(255, 255, 255, 0) 70%)",
-          maskImage:
-            "linear-gradient(to bottom, #282828 0%, rgba(255, 255, 255, 0) 70%)",
-          filter: "blur(2px)",
-        }}
-      />
-      <NavigationBar />
-      <HeroSection />
-      <ProjectsSection />
-      <CertificatesSection />
-      <SkillsSection />
+    <div className="min-h-screen text-foreground">
+      <Nav />
+      <Hero />
+      <Work />
+      <Experience />
+      <Stack />
+      <Certs />
+      <Contact />
+      <Footer />
       <Chatbot />
-    </main>
+    </div>
   );
 }

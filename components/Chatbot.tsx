@@ -1,283 +1,215 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import robot from "@/assets/robot.png";
+import { MessageCircle, X, Send } from "lucide-react";
+import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
-
-type Message = {
-   id: string;
-   text: string;
-   isUser: boolean;
-   source?: string;
-   createdAt: number;
-};
+import { getFeaturedFAQ } from "@/server/ai/faq-ui";
+import { sendChatMessage } from "@/lib/chat/client";
 
 type FAQ = {
-   question: string;
-   answer: string;
+  question: string;
+  answer: string;
 };
 
-export default function Chatbot() {
-   const [isOpen, setIsOpen] = useState(false);
-   const [messages, setMessages] = useState<Message[]>([]);
-   const [faqs, setFaqs] = useState<FAQ[]>([]);
-   const [input, setInput] = useState("");
-   const [loading, setLoading] = useState(false);
-   const [isLoaded, setIsLoaded] = useState(false);
+type Msg = {
+  role: "bot" | "user";
+  text: string;
+  time: string;
+  id?: string;
+  source?: string;
+};
 
-   const CHATBOT_API_URL = process.env.NEXT_PUBLIC_CHATBOT_API_URL;
+const initialMessages: Msg[] = [
+  {
+    role: "bot",
+    text: "Hey there 👋 I'm Hidayat's assistant. Ask me anything about his work, stack, or availability.",
+    time: "now",
+  },
+];
 
-   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-   const inputRef = useRef<HTMLInputElement | null>(null);
+export function Chatbot() {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState<Msg[]>(initialMessages);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
-   // INIT
-   useEffect(() => {
-      const welcomeMessage: Message = {
-         id: uuidv4(),
-         text: "Hai 👋\nAku asisten virtual Muhammad Hidayat Mauluddin.\nMau tahu tentang pengalaman, skill, atau project beliau? Tanya saja ya 😊",
-         isUser: false,
-         createdAt: Date.now(),
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({
+      top: scrollRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages, open, loading]);
+
+  const sendToBot = async (text: string) => {
+    const trimmed = text.trim();
+    if (!trimmed || loading) return;
+
+    const userMsg: Msg = {
+      id: uuidv4(),
+      role: "user",
+      text: trimmed,
+      time: "now",
+    };
+
+    setMessages((m) => [...m, userMsg]);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const response = await sendChatMessage(trimmed);
+
+      const botMsg: Msg = {
+        id: uuidv4(),
+        role: "bot",
+        text: response.answer,
+        time: "now",
+        source: response.source,
       };
 
-      try {
-         const stored = localStorage.getItem("chat_messages");
+      await new Promise((r) => setTimeout(r, 300));
 
-         if (stored) {
-            const parsed = JSON.parse(stored);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-               setMessages(parsed);
-            } else {
-               setIsOpen(true);
-               setMessages([welcomeMessage]);
-            }
-         } else {
-            setIsOpen(true);
-            setMessages([welcomeMessage]);
-         }
-      } catch {
-         localStorage.removeItem("chat_messages");
-         setMessages([welcomeMessage]);
-      }
+      setMessages((m) => [...m, botMsg]);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Unknown error";
 
-      setIsLoaded(true);
-   }, []);
+      setMessages((m) => [
+        ...m,
+        {
+          id: uuidv4(),
+          role: "bot",
+          text: message,
+          time: "now",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-   // SAVE
-   useEffect(() => {
-      if (isLoaded) {
-         localStorage.setItem("chat_messages", JSON.stringify(messages));
-      }
-   }, [messages, isLoaded]);
+  const send = (text: string) => sendToBot(text);
 
-   // AUTO SCROLL
-   useEffect(() => {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-   }, [messages, loading]);
-
-   // AUTO FOCUS
-   useEffect(() => {
-      if (isOpen) {
-         setTimeout(() => inputRef.current?.focus(), 100);
-      }
-   }, [isOpen]);
-
-   // FETCH FAQ
-   useEffect(() => {
-      const fetchFaq = async () => {
-         try {
-            const res = await fetch(`${CHATBOT_API_URL}/api/faq`);
-            const data = await res.json();
-            setFaqs(data);
-         } catch {
-            console.error("Failed to fetch FAQ");
-         }
-      };
-
-      fetchFaq();
-   }, [CHATBOT_API_URL]);
-
-   // SEND TO BOT
-   const sendToBot = async (question: string) => {
-      if (loading) return;
-
-      const userMessage: Message = {
-         id: uuidv4(),
-         text: question,
-         isUser: true,
-         createdAt: Date.now(),
-      };
-
-      setMessages((prev) => [...prev, userMessage]);
-      setLoading(true);
-
-      try {
-         const res = await fetch(`${CHATBOT_API_URL}/api/chat`, {
-            method: "POST",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ question }),
-         });
-
-         const data = await res.json();
-
-         if (!res.ok) {
-            throw new Error(data?.detail || "Something went wrong");
-         }
-
-         const botMessage: Message = {
-            id: uuidv4(),
-            text: data.answer || "No response from server",
-            isUser: false,
-            source: data.source,
-            createdAt: Date.now(),
-         };
-
-         // small delay for realism
-         await new Promise((res) => setTimeout(res, 400));
-
-         setMessages((prev) => [...prev, botMessage]);
-      } catch (err: any) {
-         setMessages((prev) => [
-            ...prev,
-            {
-               id: uuidv4(),
-               text: err.message || "Error connecting to server",
-               isUser: false,
-               createdAt: Date.now(),
-            },
-         ]);
-      } finally {
-         setLoading(false);
-      }
-   };
-
-   const sendMessage = () => {
-      if (!input.trim() || loading) return;
-      sendToBot(input);
-      setInput("");
-   };
-
-   const handleQuickQuestion = (question: string) => {
-      sendToBot(question);
-   };
-
-   const clearChat = () => {
-      setMessages([]);
-      localStorage.removeItem("chat_messages");
-   };
-
-   return (
-      <>
-         {/* FLOATING BUTTON */}
-         {!isOpen && (
-            <button
-               aria-label="Open chat"
-               onClick={() => setIsOpen(true)}
-               className="fixed bottom-5 right-5 border border-surface bg-background text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-xl hover:scale-105 transition"
-            >
-               💬
-            </button>
-         )}
-
-         {/* CHATBOX */}
-         {isOpen && (
-            <div className="fixed bottom-5 right-5 w-[90vw] max-w-sm bg-background border border-surface shadow-xl rounded-2xl flex flex-col overflow-hidden">
-               {/* HEADER */}
-               <div className="bg-background border-b border-surface text-white p-3 flex justify-between items-center">
-                  <span className="font-semibold">Assistant</span>
-                  <div className="flex gap-2">
-                     <button
-                        onClick={clearChat}
-                        className="text-xs bg-surface px-2 py-1 rounded"
-                     >
-                        Clear
-                     </button>
-                     <button onClick={() => setIsOpen(false)}>✖</button>
-                  </div>
-               </div>
-
-               {/* CHAT AREA */}
-               <div className="h-80 overflow-y-auto p-3 space-y-3">
-                  {/* QUICK QUESTIONS */}
-                  {faqs.length > 0 && messages.length <= 1 && (
-                     <div className="flex flex-wrap gap-1.5 mb-3">
-                        {faqs.slice(0, 4).map((faq, i) => (
-                           <button
-                              key={i}
-                              onClick={() => handleQuickQuestion(faq.question)}
-                              className="text-xs text-white bg-surface px-3 py-2 rounded-full hover:bg-background transition"
-                           >
-                              {faq.question}
-                           </button>
-                        ))}
-                     </div>
-                  )}
-
-                  {/* MESSAGES */}
-                  {messages.map((msg) => (
-                     <div
-                        key={msg.id}
-                        className={msg.isUser ? "text-right" : "text-left"}
-                     >
-                        <div
-                           className={`inline-block px-3 py-2 rounded-lg max-w-[75%] ${
-                              msg.isUser
-                                 ? "bg-background text-white"
-                                 : "bg-surface text-white"
-                           }`}
-                        >
-                           {msg.text.split("\n").map((line, i) => (
-                              <p key={i}>{line}</p>
-                           ))}
-
-                           {msg.source && (
-                              <div className="text-xs opacity-70 mt-1">
-                                 Source: {msg.source}
-                              </div>
-                           )}
-                        </div>
-                     </div>
-                  ))}
-
-                  {/* LOADING */}
-                  {loading && (
-                     <div className="text-left">
-                        <div className="bg-surface text-white px-3 py-2 rounded-lg inline-block animate-pulse">
-                           Assistant is typing...
-                        </div>
-                     </div>
-                  )}
-
-                  <div ref={messagesEndRef} />
-               </div>
-
-               {/* INPUT */}
-               <div className="flex border-t border-surface p-3">
-                  <input
-                     ref={inputRef}
-                     maxLength={250}
-                     disabled={loading}
-                     className="flex-1 p-2 outline-none text-sm text-white bg-transparent"
-                     placeholder="Ask something..."
-                     value={input}
-                     onChange={(e) => setInput(e.target.value)}
-                     onKeyDown={(e) => {
-                        if (e.key === "Enter" && !e.shiftKey) {
-                           e.preventDefault();
-                           sendMessage();
-                        }
-                     }}
-                  />
-                  <button
-                     disabled={loading}
-                     onClick={sendMessage}
-                     className="px-4 bg-primary hover:bg-primaryDark text-white text-sm rounded-lg ml-2 transition disabled:opacity-50"
-                  >
-                     Send
-                  </button>
-               </div>
+  return (
+    <>
+      {/* Panel */}
+      <div
+        className={`fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] origin-bottom-right transition-all duration-300 ${
+          open
+            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 scale-95 translate-y-4 pointer-events-none"
+        }`}
+      >
+        <div className="bg-secondary/90 rounded-3xl overflow-hidden shadow-[0_20px_60px_-10px_rgba(0,0,0,0.6)] flex flex-col h-[520px] max-h-[calc(100vh-8rem)]">
+          {/* Header */}
+          <div className="px-5 py-4 border-b border-white/5 flex items-center gap-3 bg-primary/15">
+            <div className="relative">
+              <div className="size-10 rounded-full bg-primary/20 ring-1 ring-primary/40 grid place-items-center">
+                <Image src={robot} width={64} height={64} alt="robot" />
+              </div>
+              <span className="absolute bottom-0 right-0 size-2.5 rounded-full bg-emerald-400 ring-2 ring-background" />
             </div>
-         )}
-      </>
-   );
+            <div className="flex-1 min-w-0">
+              <div className="font-display font-semibold leading-tight">
+                Ask Hidayat
+              </div>
+              <div className="text-xs text-muted-foreground">
+                Typically replies in seconds
+              </div>
+            </div>
+            <button
+              onClick={() => setOpen(false)}
+              className="size-8 grid place-items-center rounded-full hover:bg-white/5 text-muted-foreground hover:text-foreground transition"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
+
+          {/* Messages */}
+          <div
+            ref={scrollRef}
+            className="flex-1 overflow-y-auto px-4 py-5 space-y-3"
+          >
+            {messages.map((m, i) => (
+              <div
+                key={m.id || i}
+                className={`flex ${
+                  m.role === "user" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                    m.role === "user"
+                      ? "bg-primary text-primary-foreground rounded-br-md"
+                      : "bg-white/5 border border-white/5 text-foreground rounded-bl-md"
+                  }`}
+                >
+                  {m.text}
+
+                  {m.source && (
+                    <div className="text-[10px] opacity-60 mt-1">
+                      Source: {m.source}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {messages.length === 1 && (
+              <div className="pt-2 flex flex-wrap gap-2">
+                {getFeaturedFAQ(4).map((faq, i) => (
+                  <button
+                    key={i}
+                    onClick={() => send(faq.question)}
+                    className="text-xs px-3 py-1.5 rounded-full glass hover:bg-white/10 text-muted-foreground hover:text-foreground transition"
+                  >
+                    {faq.question}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {loading && (
+              <div className="text-xs text-muted-foreground">
+                Assistant is typing...
+              </div>
+            )}
+          </div>
+
+          {/* Input */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              send(input);
+            }}
+            className="p-3 border-t border-white/5 flex items-center gap-2"
+          >
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type a message…"
+              className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:bg-white/10 transition"
+            />
+            <button
+              type="submit"
+              disabled={!input.trim() || loading}
+              className="size-10 grid place-items-center rounded-full bg-primary text-primary-foreground hover:shadow-[0_0_30px_rgba(80,200,255,0.4)] transition disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <Send className="size-4" />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Toggle button */}
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="fixed bottom-6 right-6 z-50 size-14 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-[0_10px_40px_rgba(80,200,255,0.45)] hover:scale-105 active:scale-95 transition cursor-pointer"
+      >
+        <MessageCircle className="size-6" />
+      </button>
+    </>
+  );
 }
