@@ -42,6 +42,7 @@ export const projects = [
         url: "https://github.com/mauluddin12z/ai-esports-training-companion",
       },
     ],
+    accent: "from-cyan-400/30 to-blue-500/10",
   },
   {
     title: "AI Sales Page Builder",
@@ -62,6 +63,7 @@ export const projects = [
         url: "https://github.com/mauluddin12z/sales-page-builder-backend",
       },
     ],
+    accent: "from-violet-400/30 to-fuchsia-500/10",
   },
   {
     title: "Attendance PWA - FKIP Universitas Sriwijaya",
@@ -82,6 +84,7 @@ export const projects = [
         url: "https://github.com/mauluddin12z/backend-attendance-app-fkip-unsri",
       },
     ],
+    accent: "from-emerald-400/30 to-teal-500/10",
   },
   {
     title: "Point of Sale - Warung 19",
@@ -102,6 +105,7 @@ export const projects = [
         url: "https://github.com/mauluddin12z/POS_RESTO19_BACKEND",
       },
     ],
+    accent: "from-amber-400/30 to-orange-500/10",
   },
   {
     title: "Hambali Furniture",
@@ -122,6 +126,7 @@ export const projects = [
         url: "https://github.com/mauluddin12z/HAMBALI-FURNITURE-WEB-BACKEND",
       },
     ],
+    accent: "from-pink-400/30 to-rose-500/10",
   },
   {
     title: "Score Tracker",
@@ -142,6 +147,7 @@ export const projects = [
         url: "https://github.com/mauluddin12z/performance-analysis-backend",
       },
     ],
+    accent: "from-sky-400/30 to-indigo-500/10",
   },
   {
     title: "Isuzu Salesperson Website",
@@ -158,6 +164,7 @@ export const projects = [
         url: "https://github.com/mauluddin12z/website-for-isuzu-sales-person",
       },
     ],
+    accent: "from-stone-400/30 to-zinc-500/10",
   },
   {
     title: "Store Finder UI/UX",
@@ -178,6 +185,7 @@ export const projects = [
         url: "https://uxdesigner-portfolio-hidayat-mauluddin.vercel.app/casestudy/store-finder-web-responsive-design",
       },
     ],
+    accent: "from-lime-400/30 to-green-500/10",
   },
 ];
 

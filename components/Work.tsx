@@ -49,19 +49,14 @@ export function Work() {
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <div>
-                    <div className="text-xs text-muted-foreground">Outcome</div>
-                    <div className="font-display font-semibold text-primary">
-                      {p.metric}
-                    </div>
-                  </div>
-
+                <div className="flex items-center pt-4 border-t border-white/5">
                   <a
-                    href="#"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors"
+                    href={p.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-auto inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors"
                   >
-                    Case study <ArrowUpRight className="size-4" />
+                    Live Demo <ArrowUpRight className="size-4" />
                   </a>
                 </div>
               </div>
