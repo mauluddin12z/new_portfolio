@@ -3,6 +3,7 @@ import { callGemini } from "@/lib/gemini/callGemini";
 import { findFAQAnswer } from "./faq";
 import { retrieveContext } from "./retrieval";
 import { buildPrompt } from "./prompt";
+import { ChatMessage } from "@/types/chat";
 
 export type ChatSource = "faq" | "ai" | "fallback";
 
@@ -13,6 +14,7 @@ export type ChatResponse = {
 
 export async function generateChatResponse(
   message: string,
+  history: ChatMessage[] = [],
 ): Promise<ChatResponse> {
   /**
    * FAQ LAYER
@@ -33,19 +35,20 @@ export async function generateChatResponse(
 
   if (!contexts.length) {
     return {
-      answer: "Please contact me directly for more information.",
+      answer:
+        "I don't have enough information to answer that accurately. Please contact me directly for detailed discussion about this topic.",
       source: "fallback",
     };
   }
   /**
    * PROMPT
    */
-  const prompt = buildPrompt(message, contexts);
+  const prompt = buildPrompt(message, contexts, history);
 
   /**
    * GEMINI
    */
-  const response = await callGemini<string>(prompt);
+  const response = "test"
   return {
     answer: response,
     source: "ai",

@@ -1,24 +1,33 @@
-export function buildPrompt(question: string, contexts: string[]) {
+import { ChatMessage } from "@/types/chat";
+
+export function buildPrompt(
+  question: string,
+  contexts: string[],
+  history: ChatMessage[],
+) {
+  const recentHistory = history
+    .slice(-4)
+    .map((msg) => `${msg.role}: ${msg.content}`)
+    .join("\n");
+
   return `
-  You are a professional portfolio assistant for Muhammad Hidayat Mauluddin.
+You are a professional portfolio assistant for Muhammad Hidayat Mauluddin.
 
-  Your task is to answer recruiter questions using ONLY the provided context.
+Recent Conversation:
+${recentHistory}
 
-  =====================
-  CONTEXT:
-  ${contexts.join("\n\n")}
-  =====================
+Context:
+${contexts.join("\n\n")}
 
-  RULES:
-  - Only answer from the provided context
-  - Do not hallucinate
-  - Keep answers concise
-  - Maximum 3 sentences
-  - Professional tone
+Rules:
+- Only answer from context
+- Keep concise
+- Maximum 3 sentences
+- Professional tone
 
-  QUESTION:
-  ${question}
+Question:
+${question}
 
-  ANSWER:
-  `;
+Answer:
+`;
 }

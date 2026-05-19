@@ -8,3 +8,8 @@ export type ChatResponse = {
 export type ChatAPIResponse = {
   response: ChatResponse;
 };
+
+export type ChatMessage = {
+  role: "user" | "assistant";
+  content: string;
+};

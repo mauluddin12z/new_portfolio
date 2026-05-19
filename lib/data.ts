@@ -30,7 +30,7 @@ export const projects = [
   {
     title: "AI Esports Training Companion",
     tag: "AI Product",
-    year: "2025",
+    year: "2026",
     blurb:
       "AI-powered esports coaching platform that simulates structured training sessions to improve player decision-making, gameplay habits, and mindset.",
     stack: ["Next.js", "Gemini AI"],
@@ -47,7 +47,7 @@ export const projects = [
   {
     title: "AI Sales Page Builder",
     tag: "AI SaaS Tool",
-    year: "2025",
+    year: "2026",
     blurb:
       "Full-stack AI system that converts structured product inputs into high-converting sales pages with multiple templates and exportable HTML output.",
     stack: ["Next.js", "Gemini AI", "Laravel", "MySQL"],

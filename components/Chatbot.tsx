@@ -5,13 +5,8 @@ import robot from "@/assets/robot.png";
 import { MessageCircle, X, Send } from "lucide-react";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
-import { getFeaturedFAQ } from "@/server/ai/faq-ui";
+import { getFeaturedFAQ } from "@/lib/faq-ui";
 import { sendChatMessage } from "@/lib/chat/client";
-
-type FAQ = {
-  question: string;
-  answer: string;
-};
 
 type Msg = {
   role: "bot" | "user";
@@ -29,6 +24,16 @@ const initialMessages: Msg[] = [
   },
 ];
 
+const formatHistory = (messages: Msg[]) => {
+  return messages
+    .filter((m) => m.role === "user" || m.role === "bot")
+    .slice(-6)
+    .map((m) => ({
+      role: m.role === "user" ? "user" : "assistant",
+      content: m.text,
+    }));
+};
+
 export function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>(initialMessages);
@@ -36,6 +41,16 @@ export function Chatbot() {
   const [loading, setLoading] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInput(e.target.value);
+
+    const el = textareaRef.current;
+    if (el) {
+      el.style.height = "0px";
+      el.style.height = el.scrollHeight + "px";
+    }
+  };
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
@@ -47,6 +62,13 @@ export function Chatbot() {
   const sendToBot = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || loading) return;
+
+    // handle /clear command locally
+    if (trimmed === "/clear") {
+      setMessages(initialMessages);
+      setInput("");
+      return;
+    }
 
     const userMsg: Msg = {
       id: uuidv4(),
@@ -60,7 +82,10 @@ export function Chatbot() {
     setLoading(true);
 
     try {
-      const response = await sendChatMessage(trimmed);
+      // include latest message
+      const history = formatHistory([...messages, userMsg]);
+
+      const response = await sendChatMessage(trimmed, history);
 
       const botMsg: Msg = {
         id: uuidv4(),
@@ -186,11 +211,19 @@ export function Chatbot() {
             }}
             className="p-3 border-t border-white/5 flex items-center gap-2"
           >
-            <input
+            <textarea
+              ref={textareaRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={handleInput}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  send(input);
+                }
+              }}
               placeholder="Type a message…"
-              className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:bg-white/10 transition"
+              rows={1}
+              className="flex-1 resize-none overflow-hidden bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:bg-white/10 transition whitespace-pre-wrap"
             />
             <button
               type="submit"

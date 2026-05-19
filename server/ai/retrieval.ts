@@ -8,6 +8,7 @@ const KEYWORD_WEIGHTS: Record<string, number> = {
   mysql: 2,
 
   machinelearning: 3,
+  ai: 4,
   ml: 3,
   cnn: 4,
   unet: 4,

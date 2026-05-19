@@ -11,14 +11,18 @@ import {
   Mail,
   Code2,
   Database,
-  Cloud,
+  BrainCircuit,
   Rocket,
 } from "lucide-react";
+
 import { contacts } from "@/lib/data";
 
 export function Hero() {
   return (
-    <section id="top" className="relative pt-36 md:pt-48 pb-24 overflow-hidden min-h-screen">
+    <section
+      id="top"
+      className="relative pt-36 md:pt-42 pb-24 overflow-hidden min-h-screen"
+    >
       <div className="absolute inset-0 grid-bg pointer-events-none" />
       <div className="absolute inset-0 noise" />
 
@@ -29,23 +33,24 @@ export function Hero() {
               <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400" />
               <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
             </span>
-            Available for fullstack web developer
+            Available for Full-Stack Web Development Projects
           </div>
 
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-            Engineering <span className="text-gradient">elegant systems</span>
+            Building scalable
+            <span className="text-gradient"> web applications</span>
             <br />
-            that ship to millions.
+            with modern technologies.
           </h1>
-
-          <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
             I'm{" "}
             <span className="text-foreground font-medium">
               Hidayat Mauluddin
             </span>{" "}
-            — a fullstack web developer crafting fast, resilient products
-            end-to-end. From distributed backends to pixel-perfect interfaces, I
-            bridge the gap between product vision and production-grade code.
+            — a Full-Stack Web Developer building scalable and high-performance
+            web applications with Next.js, React, Node.js, and MySQL.
+            Specialized in secure backend architecture, REST APIs, and
+            AI-powered integrations that create smarter digital experiences.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -53,7 +58,7 @@ export function Hero() {
               href="#work"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:shadow-[0_0_40px_rgba(80,200,255,0.45)] transition-all"
             >
-              View selected work <ArrowUpRight className="size-4" />
+              View Selected Work <ArrowUpRight className="size-4" />
             </a>
 
             <a
@@ -62,12 +67,13 @@ export function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition-colors"
             >
-              <Mail className="size-4" /> Get in touch
+              <Mail className="size-4" /> Get in Touch
             </a>
 
             <div className="flex items-center gap-1 ml-2">
               {Object.values(contacts).map((contact, i) => {
                 const Icon = contact.icon;
+
                 return (
                   <a
                     key={i}
@@ -122,8 +128,8 @@ export function Hero() {
             <FloatChip
               className="bottom-12 -left-6"
               delay="1.2s"
-              icon={Cloud}
-              label="AWS"
+              icon={BrainCircuit}
+              label="AI Integration"
             />
 
             <FloatChip
