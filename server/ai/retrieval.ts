@@ -1,5 +1,8 @@
-import knowledge from "@/data/knowledge.json";
+import { knowledge } from "@/data/knowledge";
 
+/**
+ * KEYWORD WEIGHTS
+ */
 const KEYWORD_WEIGHTS: Record<string, number> = {
   nextjs: 3,
   react: 2,
@@ -17,49 +20,179 @@ const KEYWORD_WEIGHTS: Record<string, number> = {
   backend: 1,
   frontend: 1,
   developer: 1,
+  project: 2,
+  portfolio: 2,
+  built: 2,
+  developed: 2,
+  recent: 2,
 };
 
-function expandQuery(query: string) {
-  let q = query.toLowerCase();
+/**
+ * TYPE BOOST
+ */
+const TYPE_WEIGHT: Record<string, number> = {
+  project: 1.7,
+  experience: 1.4,
+  skills: 1.0,
+  certification: 1.1,
+  profile: 1.2,
+  education: 1.1,
+  contact: 0.8,
+  "machine-learning": 1.3,
+};
 
-  if (q.includes("machine learning") || q.includes("ml")) {
-    q += " cnn unet ann ai deep learning";
-  }
+/**
+ * YEAR BOOST (IMPORTANT FIX)
+ */
+const YEAR_WEIGHT: Record<string, number> = {
+  "2026": 3,
+  "2025": 2.5,
+  "2024": 2,
+  "2023": 1.5,
+  "2022": 1,
+};
 
-  if (q.includes("backend")) {
-    q += " nodejs express api mysql";
-  }
+/**
+ * QUERY EXPANSION MAP
+ */
+const QUERY_MAP: Record<string, string[]> = {
+  backend: ["nodejs", "express", "api", "mysql"],
+  frontend: ["nextjs", "react", "ui"],
+  "machine learning": ["cnn", "unet", "ann", "ai", "deep learning"],
+  ml: ["cnn", "unet", "ann", "ai"],
+};
 
-  if (q.includes("frontend")) {
-    q += " nextjs react ui";
-  }
-
-  return q;
+/**
+ * NORMALIZATION
+ */
+function normalize(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
-export function retrieveContext(query: string) {
-  const expanded = expandQuery(query);
+/**
+ * TOKENIZER
+ */
+function tokenize(text: string): Set<string> {
+  return new Set(normalize(text).split(" ").filter(Boolean));
+}
 
-  const scored = knowledge.map((item) => {
+/**
+ * PREPROCESS KNOWLEDGE
+ */
+const normalizedKnowledge = knowledge.map((item) => ({
+  ...item,
+  normalizedKeywords: item.keywords.map(normalize),
+}));
+
+/**
+ * INTENT DETECTION (CRITICAL FIX)
+ */
+function detectIntent(query: string): string | null {
+  const q = query.toLowerCase();
+
+  if (
+    q.includes("project") ||
+    q.includes("built") ||
+    q.includes("develop") ||
+    q.includes("portfolio")
+  ) {
+    return "project";
+  }
+
+  if (q.includes("experience") || q.includes("work")) {
+    return "experience";
+  }
+
+  if (q.includes("skill") || q.includes("stack")) {
+    return "skills";
+  }
+
+  return null;
+}
+
+/**
+ * QUERY EXPANSION
+ */
+function expandQuery(query: string): string {
+  const tokens = tokenize(query);
+  const expanded = new Set(tokens);
+
+  for (const [key, expansions] of Object.entries(QUERY_MAP)) {
+    const keyTokens = tokenize(key);
+
+    const match = [...keyTokens].every((t) => tokens.has(t));
+
+    if (match) {
+      expansions.forEach((e) => expanded.add(normalize(e)));
+    }
+  }
+
+  return [...expanded].join(" ");
+}
+
+/**
+ * MAIN RETRIEVAL FUNCTION
+ */
+export function retrieveContext(query: string): string[] {
+  const intent = detectIntent(query);
+
+  const expandedQuery = expandQuery(query);
+  const tokens = tokenize(expandedQuery);
+
+  const scored = normalizedKnowledge.map((item) => {
     let score = 0;
 
-    for (const keyword of item.keywords) {
-      if (expanded.includes(keyword.toLowerCase())) {
-        score += KEYWORD_WEIGHTS[keyword] || 1;
+    /**
+     * KEYWORD MATCH
+     */
+    for (const keyword of item.normalizedKeywords) {
+      if (tokens.has(keyword)) {
+        score += KEYWORD_WEIGHTS[keyword] ?? 1;
       }
     }
 
+    /**
+     * TYPE BOOST
+     */
+    const typeBoost = TYPE_WEIGHT[item.type] ?? 1;
+
+    /**
+     * YEAR BOOST (IMPORTANT FIX FOR "recent")
+     */
+    const yearBoost =
+      // @ts-ignore
+      item.year && YEAR_WEIGHT[item.year] ? YEAR_WEIGHT[item.year] : 1;
+
+    /**
+     * INTENT BOOST
+     */
+    const intentBoost = intent && item.type === intent ? 2 : 1;
+
+    /**
+     * FINAL SCORE (NORMALIZED)
+     */
+    const finalScore =
+      (score * typeBoost * yearBoost * intentBoost) /
+      Math.log(item.normalizedKeywords.length + 2);
+
     return {
       text: item.text,
-      score,
+      score: finalScore,
     };
   });
 
-  const MIN_SCORE = 2;
+  /**
+   * SORT
+   */
+  const sorted = scored.sort((a, b) => b.score - a.score);
 
-  return scored
-    .filter((item) => item.score >= MIN_SCORE)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .map((item) => item.text);
+  /**
+   * Always return top results (NO HARD FALLOUT TO EMPTY)
+   */
+  const top = sorted.slice(0, 3);
+
+  return top.map((t) => t.text);
 }

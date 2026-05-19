@@ -1,4 +1,4 @@
-[
+export const faq = [
   {
     "question": "Who are you?",
     "answer": "I'm Muhammad Hidayat Mauluddin, a Full-Stack Web Developer and Machine Learning enthusiast from Palembang, Indonesia.",

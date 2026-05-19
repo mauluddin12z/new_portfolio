@@ -1,5 +1,5 @@
+import { faq } from "@/data/faq";
 import Fuse from "fuse.js";
-import faqData from "@/data/faq.json";
 
 const normalize = (s: string) =>
   s
@@ -8,7 +8,7 @@ const normalize = (s: string) =>
     .replace(/\s+/g, " ")
     .trim();
 
-const fuse = new Fuse(faqData, {
+const fuse = new Fuse(faq, {
   keys: ["question"],
   threshold: 0.35,
 });
@@ -16,7 +16,7 @@ export function findFAQAnswer(question: string) {
   const q = normalize(question);
 
   // EXACT MATCH (best possible path)
-  const exact = faqData.find((f) => normalize(f.question) === q);
+  const exact = faq.find((f) => normalize(f.question) === q);
 
   if (exact) return exact.answer;
   const result = fuse.search(q);

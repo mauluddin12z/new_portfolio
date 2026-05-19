@@ -48,7 +48,7 @@ export async function generateChatResponse(
   /**
    * GEMINI
    */
-  const response = "test"
+  const response = await callGemini<string>(prompt);
   return {
     answer: response,
     source: "ai",
