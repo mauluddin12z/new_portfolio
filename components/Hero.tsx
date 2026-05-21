@@ -13,6 +13,7 @@ import {
   Database,
   BrainCircuit,
   Rocket,
+  PhoneForwardedIcon,
 } from "lucide-react";
 
 import { contacts } from "@/lib/data";
@@ -62,12 +63,12 @@ export function Hero() {
             </a>
 
             <a
-              href="mailto:mauludindayat@gmail.com"
+              href="https://t.me/mauluddin12z"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition-colors"
             >
-              <Mail className="size-4" /> Get in Touch
+              <PhoneForwardedIcon className="size-4" /> Get in Touch
             </a>
 
             <div className="flex items-center gap-1 ml-2">

@@ -1,6 +1,7 @@
 import { projects } from "@/lib/data";
 import { SectionHeader } from "./SectionHeader";
-import { Sparkles, ArrowUpRight } from "lucide-react";
+import { Sparkles, ArrowUpRight, Code2, ChevronDown } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./dropdown-menu";
 
 export function Work() {
   return (
@@ -49,15 +50,51 @@ export function Work() {
                   ))}
                 </div>
 
-                <div className="flex items-center pt-4 border-t border-white/5">
-                  <a
-                    href={p.liveDemo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-auto inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors"
-                  >
-                    Live Demo <ArrowUpRight className="size-4" />
-                  </a>
+                <div className="flex items-center justify-end gap-3.5 pt-4 border-t border-white/5">
+                  <div className="flex items-center gap-3">
+                    {p.links && p.links.length > 1 ? (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <button className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors">
+                            <Code2 className="size-4" /> Code{" "}
+                            <ChevronDown className="size-3" />
+                          </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-48">
+                          {p.links.map((c) => (
+                            <DropdownMenuItem key={c.label} asChild>
+                              <a
+                                href={c.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="cursor-pointer"
+                              >
+                                <Code2 className="size-3.5 mr-2 text-muted-foreground" />{" "}
+                                {c.label}
+                              </a>
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    ) : p.links && p.links.length === 1 ? (
+                      <a
+                        href={p.links[0].url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors"
+                      >
+                        <Code2 className="size-4" /> {p.links[0].label}
+                      </a>
+                    ) : null}
+                    <a
+                      href={p.liveDemo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors"
+                    >
+                      Live Demo <ArrowUpRight className="size-4" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </article>

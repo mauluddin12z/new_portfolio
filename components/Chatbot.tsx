@@ -241,7 +241,17 @@ export function Chatbot() {
         onClick={() => setOpen((o) => !o)}
         className="fixed bottom-6 right-6 z-50 size-14 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-[0_10px_40px_rgba(80,200,255,0.45)] hover:scale-105 active:scale-95 transition cursor-pointer"
       >
-        <MessageCircle className="size-6" />
+        <div className="relative size-6">
+          <MessageCircle
+            className={`absolute inset-0 size-6 transition-all duration-300 ${open ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"}`}
+          />
+          <X
+            className={`absolute inset-0 size-6 transition-all duration-300 ${open ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}`}
+          />
+        </div>
+        {!open && (
+          <span className="absolute -top-1 -right-1 size-3.5 rounded-full bg-emerald-400 ring-2 ring-background animate-pulse" />
+        )}
       </button>
     </>
   );

@@ -1,6 +1,7 @@
 import { Mail, Linkedin, Calendar, MapPin } from "lucide-react";
 
 import { ContactItem } from "./ContactItem";
+import { contacts } from "@/lib/data";
 
 export function Contact() {
   return (
@@ -29,7 +30,7 @@ export function Contact() {
 
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <a
-                href="mailto:mauludindayat@gmail.com"
+                href={contacts.mail.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-medium text-primary-foreground hover:shadow-[0_0_50px_rgba(80,200,255,0.5)] transition-all"
@@ -38,7 +39,7 @@ export function Contact() {
               </a>
 
               <a
-                href="https://www.linkedin.com/in/hidayatmauluddin/"
+                href={contacts.linkedin.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full glass px-7 py-3.5 font-medium hover:bg-white/10 transition-colors"
@@ -51,7 +52,7 @@ export function Contact() {
               <ContactItem
                 icon={Mail}
                 label="Email"
-                value="mauludindayat@gmail.com"
+                value={contacts.mail.email}
               />
               <ContactItem
                 icon={MapPin}

@@ -1,3 +1,5 @@
+import { contacts } from "@/lib/data";
+
 export function Footer() {
   return (
     <footer className="border-t border-white/5 py-10 px-6">
@@ -13,11 +15,29 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-5">
-          <a href="#" className="hover:text-foreground transition-colors">
-            GitHub
+          <a
+            href={contacts.mail.email}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            {contacts.mail.label}
           </a>
-          <a href="#" className="hover:text-foreground transition-colors">
-            LinkedIn
+          <a
+            href={contacts.github.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            {contacts.github.label}
+          </a>
+          <a
+            href={contacts.linkedin.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            {contacts.linkedin.label}
           </a>
         </div>
       </div>

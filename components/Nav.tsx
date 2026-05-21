@@ -1,7 +1,7 @@
 import { nav } from "@/lib/data";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import logo from "@/assets/logo.svg"
+import logo from "@/assets/logo.svg";
 
 export function Nav() {
   return (
@@ -9,7 +9,7 @@ export function Nav() {
       <nav className="glass rounded-full px-5 py-2.5 flex items-center gap-1 sm:gap-2 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
         <a href="#top" className="flex items-center gap-2 pl-1 pr-3">
           <div className="p-1 size-7 rounded-lg bg-primary/20 ring-1 ring-primary/40 grid place-items-center">
-          <Image src={logo} width={36} height={64} alt="logo" />
+            <Image src={logo} width={36} height={64} alt="logo" />
           </div>
         </a>
 
@@ -26,10 +26,12 @@ export function Nav() {
         </div>
 
         <a
-          href="#contact"
+          href="https://t.me/mauluddin12z"
+          target="_blank"
+          rel="noopener noreferrer"
           className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground hover:shadow-[0_0_30px_rgba(80,200,255,0.4)] transition-shadow"
         >
-          Hire me <ArrowUpRight className="size-3.5" />
+          Start a Project <ArrowUpRight className="size-3.5" />
         </a>
       </nav>
     </header>

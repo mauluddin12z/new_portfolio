@@ -32,14 +32,14 @@ export const projects = [
     tag: "AI Product",
     year: "2026",
     blurb:
-      "AI-powered esports coaching platform that simulates structured training sessions to improve player decision-making, gameplay habits, and mindset.",
+      "AI-powered esports coaching platform designed to simulate structured training sessions, helping players improve decision-making, gameplay consistency, and competitive mindset through personalized feedback.",
     stack: ["Next.js", "Gemini AI"],
     image: "/images/projects/ai_esport_training_companion.png",
     liveDemo: "https://esports-training-companion.hidayatmauluddin.my.id/",
     links: [
       {
         label: "Github",
-        url: "https://github.com/mauluddin12z/ai-esports-training-companion",
+        url: "https://github.com/mauluddin12za/ai-esports-training-companion",
       },
     ],
     accent: "from-cyan-400/30 to-blue-500/10",
@@ -49,18 +49,18 @@ export const projects = [
     tag: "AI SaaS Tool",
     year: "2026",
     blurb:
-      "Full-stack AI system that converts structured product inputs into high-converting sales pages with multiple templates and exportable HTML output.",
+      "Full-stack AI platform that transforms structured product inputs into responsive, conversion-focused sales pages with multiple layouts and exportable HTML output.",
     stack: ["Next.js", "Gemini AI", "Laravel", "MySQL"],
     image: "/images/projects/sales_page_builder.png",
     liveDemo: "https://sales-page-builder.hidayatmauluddin.my.id/",
     links: [
       {
         label: "Frontend",
-        url: "https://github.com/mauluddin12z/sales-page-builder-frontend",
+        url: "https://github.com/mauluddin12za/sales-page-builder-frontend",
       },
       {
         label: "Backend",
-        url: "https://github.com/mauluddin12z/sales-page-builder-backend",
+        url: "https://github.com/mauluddin12za/sales-page-builder-backend",
       },
     ],
     accent: "from-violet-400/30 to-fuchsia-500/10",
@@ -70,18 +70,18 @@ export const projects = [
     tag: "Enterprise PWA",
     year: "2025",
     blurb:
-      "Location-based attendance system with role-based access control, geolocation validation, and full CRUD management for users and records.",
+      "Location-aware attendance management system with role-based access control, geolocation validation, and centralized record management for academic environments.",
     stack: ["Next.js", "Express.js", "MySQL"],
     image: "/images/projects/attendance_pwa.png",
     liveDemo: "https://attendance-pwa.hidayatmauluddin.my.id",
     links: [
       {
         label: "Frontend",
-        url: "https://github.com/mauluddin12z/frontend-attendance-app-fkip-unsri",
+        url: "https://github.com/mauluddin12za/frontend-attendance-pwa-fkip-unsri",
       },
       {
         label: "Backend",
-        url: "https://github.com/mauluddin12z/backend-attendance-app-fkip-unsri",
+        url: "https://github.com/mauluddin12za/backend-attendance-pwa-fkip-unsri",
       },
     ],
     accent: "from-emerald-400/30 to-teal-500/10",
@@ -91,39 +91,39 @@ export const projects = [
     tag: "POS System",
     year: "2025",
     blurb:
-      "Web-based POS system to streamline ordering, transactions, and restaurant operations with full admin management support.",
+      "Restaurant POS platform built to simplify ordering, transaction processing, and inventory workflows through a centralized admin management system.",
     stack: ["Next.js", "Express.js", "MySQL"],
     image: "/images/projects/pos_warung19.png",
     liveDemo: "https://pos-resto.hidayatmauluddin.my.id",
     links: [
       {
         label: "Frontend",
-        url: "https://github.com/mauluddin12z/POS_RESTO19_FRONTEND",
+        url: "https://github.com/mauluddin12za/pos-resto19-frontend",
       },
       {
         label: "Backend",
-        url: "https://github.com/mauluddin12z/POS_RESTO19_BACKEND",
+        url: "https://github.com/mauluddin12za/pos-resto19-backend",
       },
     ],
     accent: "from-amber-400/30 to-orange-500/10",
   },
   {
     title: "Hambali Furniture",
-    tag: "E-Commerce Website",
+    tag: "Company Profile Website",
     year: "2023",
     blurb:
-      "E-commerce platform with admin dashboard for product and content management, improving online visibility and store operations.",
+      "Furniture company website with a custom admin dashboard for managing product catalogs, business content, and showroom information through a centralized interface.",
     stack: ["Next.js", "Express.js", "MySQL"],
     image: "/images/projects/hambali_furniture.png",
     liveDemo: "https://hambali-furniture.hidayatmauluddin.my.id",
     links: [
       {
         label: "Frontend",
-        url: "https://github.com/mauluddin12z/HAMBALI-FURNITURE-WEB-FRONTEND",
+        url: "https://github.com/mauluddin12za/hambali-furniture-frontend",
       },
       {
         label: "Backend",
-        url: "https://github.com/mauluddin12z/HAMBALI-FURNITURE-WEB-BACKEND",
+        url: "https://github.com/mauluddin12za/hambali-furniture-backend",
       },
     ],
     accent: "from-pink-400/30 to-rose-500/10",
@@ -133,18 +133,18 @@ export const projects = [
     tag: "Education System",
     year: "2024",
     blurb:
-      "Academic score management system for tracking, analyzing, and visualizing student performance with dashboards and reports.",
+      "Academic performance management system for tracking, analyzing, and visualizing student scores through interactive dashboards and reporting tools.",
     stack: ["Vite React", "Express.js", "MySQL"],
     image: "/images/projects/score_tracker.png",
     liveDemo: "https://score-tracker.hidayatmauluddin.my.id",
     links: [
       {
         label: "Frontend",
-        url: "https://github.com/mauluddin12z/performance-analysis-frontend",
+        url: "https://github.com/mauluddin12za/score-tracker-frontend",
       },
       {
         label: "Backend",
-        url: "https://github.com/mauluddin12z/performance-analysis-backend",
+        url: "https://github.com/mauluddin12za/score-tracker-backend",
       },
     ],
     accent: "from-sky-400/30 to-indigo-500/10",
@@ -154,14 +154,14 @@ export const projects = [
     tag: "Company Website",
     year: "2022",
     blurb:
-      "Product catalog and admin management system for an automotive salesperson to manage listings and customer inquiries.",
+      "Automotive product catalog and inquiry management platform built to help sales representatives manage listings and customer interactions more efficiently.",
     stack: ["CodeIgniter", "MySQL"],
     image: "/images/projects/isuzu_sumsel.png",
     liveDemo: "https://isuzu-sumsel.hidayatmauluddin.my.id",
     links: [
       {
         label: "Fullstack",
-        url: "https://github.com/mauluddin12z/website-for-isuzu-sales-person",
+        url: "https://github.com/mauluddin12za/isuzu-sumsel",
       },
     ],
     accent: "from-stone-400/30 to-zinc-500/10",
@@ -171,14 +171,14 @@ export const projects = [
     tag: "Frontend Project",
     year: "2024",
     blurb:
-      "Location-based store discovery platform designed to help users find stores and products based on proximity and category.",
+      "Location-based store discovery interface designed to help users explore nearby stores and products through category filtering and responsive user experience design.",
     stack: ["Vite React"],
     image: "/images/projects/storefindercover.png",
     liveDemo: "https://store-finder.hidayatmauluddin.my.id",
     links: [
       {
         label: "Frontend",
-        url: "https://github.com/mauluddin12z/store-finder",
+        url: "https://github.com/mauluddin12za/store-finder",
       },
       {
         label: "Case Study",
@@ -188,19 +188,18 @@ export const projects = [
     accent: "from-lime-400/30 to-green-500/10",
   },
 ];
-
 export const experience = [
   {
     role: "Freelance Fullstack Developer — Attendance Progressive Web Application",
     company: "Sriwijaya University",
     period: "Oct — Dec 2025",
     bullets: [
-      "Developed a location-based Progressive Web App using Next.js and Node.js.",
-      "Built RESTful APIs for attendance tracking and secure user authentication.",
-      "Implemented role-based access control for different user roles.",
-      "Integrated geolocation validation to ensure accurate attendance marking.",
-      "Designed and optimized MySQL database schemas for performance and scalability.",
-      "Debugged and improved performance across both web and mobile interfaces.",
+      "Developed a location-aware Progressive Web Application using Next.js and Node.js.",
+      "Built RESTful APIs for attendance management and secure authentication workflows.",
+      "Implemented role-based access control for administrators, staff, and users.",
+      "Integrated geolocation validation to support accurate attendance verification.",
+      "Designed and optimized MySQL database schemas for maintainability and scalability.",
+      "Improved application responsiveness across desktop and mobile platforms.",
     ],
   },
   {
@@ -208,10 +207,10 @@ export const experience = [
     company: "Pempek 19 Cafe",
     period: "Aug 2025",
     bullets: [
-      "Built a web-based Point of Sale system using Next.js and Node.js.",
-      "Designed relational database structure for transactions and inventory management.",
-      "Developed secure authentication and authorization system for admin access.",
-      "Implemented full CRUD operations for products, sales, and inventory flow.",
+      "Built a web-based Point of Sale application using Next.js and Node.js.",
+      "Designed relational database structures for transactions and inventory management.",
+      "Implemented secure authentication and authorization for administrative access.",
+      "Developed CRUD workflows for products, sales transactions, and inventory records.",
     ],
   },
   {
@@ -220,9 +219,9 @@ export const experience = [
     period: "Jun — Jul 2023",
     bullets: [
       "Developed a responsive company website using Next.js.",
-      "Built an admin dashboard for managing content dynamically.",
-      "Created and integrated REST APIs between frontend and backend systems.",
-      "Optimized database queries to improve overall application performance.",
+      "Built an admin dashboard for dynamic content and product management.",
+      "Created and integrated REST APIs between frontend and backend services.",
+      "Optimized database queries and application performance for smoother operations.",
     ],
   },
   {
@@ -230,10 +229,10 @@ export const experience = [
     company: "Isuzu Sales (South Sumatra)",
     period: "Mar 10, 2022 — Mar 17, 2022",
     bullets: [
-      "Built a full website from scratch using CodeIgniter 3 and MySQL.",
-      "Developed an admin panel for managing listings and customer inquiries.",
-      "Implemented backend logic for content and data management.",
-      "Delivered a functional sales website within a short development timeline.",
+      "Built a complete automotive sales website using CodeIgniter 3 and MySQL.",
+      "Developed an admin panel for managing product listings and customer inquiries.",
+      "Implemented backend logic for content and operational data management.",
+      "Delivered the project within a short development timeline while maintaining functionality and usability.",
     ],
   },
 ];
@@ -311,18 +310,21 @@ export const certs = [
 export const contacts = {
   github: {
     icon: Github,
-    url: "https://github.com/mauluddin12z",
+    username: "mauluddin12z",
+    url: "https://github.com/mauluddin12za",
     label: "GitHub",
   },
 
   linkedin: {
     icon: Linkedin,
+    username: "hidayatmauluddin",
     url: "https://linkedin.com/in/hidayatmauluddin",
     label: "LinkedIn",
   },
 
   mail: {
     icon: Mail,
+    email: "mauludindayat@gmail.com",
     url: "mailto:mauludindayat@gmail.com",
     label: "Email",
   },
