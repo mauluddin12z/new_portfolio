@@ -31,7 +31,7 @@ export const projects = [
     tag: "AI Product",
     year: "2026",
     blurb:
-      "AI-powered esports coaching platform designed to simulate structured training sessions, helping players improve decision-making, gameplay consistency, and competitive mindset through personalized feedback.",
+      "An advanced AI-powered coaching engine that analyzes gameplay telemetry to deliver hyper-personalized feedback, helping players improve decision-making, mechanics, and competitive consistency through structured esports training simulations.",
     stack: ["Next.js", "Gemini AI"],
     image: "/images/projects/ai_esport_training_companion.png",
     liveDemo: "https://esports-training-companion.hidayatmauluddin.my.id/",
@@ -43,12 +43,13 @@ export const projects = [
     ],
     accent: "from-cyan-400/30 to-blue-500/10",
   },
+
   {
     title: "AI Sales Page Builder",
     tag: "AI SaaS Tool",
     year: "2026",
     blurb:
-      "Full-stack AI platform that transforms structured product inputs into responsive, conversion-focused sales pages with multiple layouts and exportable HTML output.",
+      "A full-stack AI SaaS platform that automates persuasive copywriting and responsive page generation, transforming structured product data into production-ready sales pages with exportable HTML output and multiple conversion-focused layouts.",
     stack: ["Next.js", "Gemini AI", "Laravel", "MySQL"],
     image: "/images/projects/sales_page_builder.png",
     liveDemo: "https://sales-page-builder.hidayatmauluddin.my.id/",
@@ -64,12 +65,13 @@ export const projects = [
     ],
     accent: "from-violet-400/30 to-fuchsia-500/10",
   },
+
   {
     title: "Attendance PWA - FKIP Universitas Sriwijaya",
     tag: "Enterprise PWA",
     year: "2025",
     blurb:
-      "Location-aware attendance management system with role-based access control, geolocation validation, and centralized record management for academic environments.",
+      "An enterprise-grade attendance management platform with geolocation validation, role-based access control, and centralized monitoring to secure academic attendance records and reduce fraudulent check-ins across campus environments.",
     stack: ["Next.js", "Express.js", "MySQL"],
     image: "/images/projects/attendance_pwa.png",
     liveDemo: "https://attendance-pwa.hidayatmauluddin.my.id",
@@ -85,12 +87,13 @@ export const projects = [
     ],
     accent: "from-emerald-400/30 to-teal-500/10",
   },
+
   {
     title: "Point of Sale - Warung 19",
     tag: "POS System",
     year: "2025",
     blurb:
-      "Restaurant POS platform built to simplify ordering, transaction processing, and inventory workflows through a centralized admin management system.",
+      "A restaurant operating system designed to streamline ordering, cashier operations, and inventory synchronization through a centralized dashboard with real-time transaction and stock management workflows.",
     stack: ["Next.js", "Express.js", "MySQL"],
     image: "/images/projects/pos_warung19.png",
     liveDemo: "https://pos-resto.hidayatmauluddin.my.id",
@@ -106,12 +109,13 @@ export const projects = [
     ],
     accent: "from-amber-400/30 to-orange-500/10",
   },
+
   {
     title: "Hambali Furniture",
     tag: "Company Profile Website",
     year: "2023",
     blurb:
-      "Furniture company website with a custom admin dashboard for managing product catalogs, business content, and showroom information through a centralized interface.",
+      "Corporate furniture catalog platform featuring a custom admin dashboard for managing product listings, showroom content, and company information through a centralized content management workflow.",
     stack: ["Next.js", "Express.js", "MySQL"],
     image: "/images/projects/hambali_furniture.png",
     liveDemo: "https://hambali-furniture.hidayatmauluddin.my.id",
@@ -127,12 +131,13 @@ export const projects = [
     ],
     accent: "from-pink-400/30 to-rose-500/10",
   },
+
   {
     title: "Score Tracker",
     tag: "Education System",
     year: "2024",
     blurb:
-      "Academic performance management system for tracking, analyzing, and visualizing student scores through interactive dashboards and reporting tools.",
+      "Academic analytics platform for managing, tracking, and visualizing student performance through interactive dashboards, score reporting systems, and centralized educational data management.",
     stack: ["Vite React", "Express.js", "MySQL"],
     image: "/images/projects/score_tracker.png",
     liveDemo: "https://score-tracker.hidayatmauluddin.my.id",
@@ -148,12 +153,13 @@ export const projects = [
     ],
     accent: "from-sky-400/30 to-indigo-500/10",
   },
+
   {
     title: "Isuzu Salesperson Website",
     tag: "Company Website",
     year: "2022",
     blurb:
-      "Automotive product catalog and inquiry management platform built to help sales representatives manage listings and customer interactions more efficiently.",
+      "Automotive product showcase and inquiry management platform built to help sales representatives organize vehicle catalogs, manage customer leads, and improve sales communication workflows.",
     stack: ["CodeIgniter", "MySQL"],
     image: "/images/projects/isuzu_sumsel.png",
     liveDemo: "https://isuzu-sumsel.hidayatmauluddin.my.id",
@@ -165,12 +171,13 @@ export const projects = [
     ],
     accent: "from-stone-400/30 to-zinc-500/10",
   },
+
   {
     title: "Store Finder UI/UX",
     tag: "Frontend Project",
     year: "2024",
     blurb:
-      "Location-based store discovery interface designed to help users explore nearby stores and products through category filtering and responsive user experience design.",
+      "Responsive location-based storefront exploration interface designed to improve product discovery and nearby store navigation through category filtering, modern layouts, and optimized user experience flows.",
     stack: ["Vite React"],
     image: "/images/projects/storefindercover.png",
     liveDemo: "https://store-finder.hidayatmauluddin.my.id",
@@ -187,18 +194,17 @@ export const projects = [
     accent: "from-lime-400/30 to-green-500/10",
   },
 ];
+
 export const experience = [
   {
     role: "Freelance Fullstack Developer — Attendance Progressive Web Application",
     company: "Sriwijaya University",
     period: "Oct — Dec 2025",
     bullets: [
-      "Developed a location-aware Progressive Web Application using Next.js and Node.js.",
-      "Built RESTful APIs for attendance management and secure authentication workflows.",
-      "Implemented role-based access control for administrators, staff, and users.",
-      "Integrated geolocation validation to support accurate attendance verification.",
-      "Designed and optimized MySQL database schemas for maintainability and scalability.",
-      "Improved application responsiveness across desktop and mobile platforms.",
+      "Engineered a high-performance, location-aware PWA that eliminated attendance fraud through precise radius-based geolocation validation.",
+      "Designed and deployed secure, optimized MySQL database schemas handling relational academic records without latency.",
+      "Architected secure RESTful APIs and robust role-based authentication (RBAC) separating administrative, staff, and user privileges.",
+      "Optimized frontend bundle size in Next.js, ensuring seamless mobile accessibility even under low-bandwidth campus networks.",
     ],
   },
   {
@@ -206,10 +212,9 @@ export const experience = [
     company: "Pempek 19 Cafe",
     period: "Aug 2025",
     bullets: [
-      "Built a web-based Point of Sale application using Next.js and Node.js.",
-      "Designed relational database structures for transactions and inventory management.",
-      "Implemented secure authentication and authorization for administrative access.",
-      "Developed CRUD workflows for products, sales transactions, and inventory records.",
+      "Developed a custom, zero-lag Point of Sale platform tailored to streamline peak-hour ordering and real-time inventory management.",
+      "Created an automated CRUD workflow for live stock updates, preventing inventory discrepancies between kitchen staff and cashiers.",
+      "Implemented ironclad backend authorization to secure daily sales data and financial audit trails from unauthorized access.",
     ],
   },
   {
