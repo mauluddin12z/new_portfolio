@@ -35,7 +35,7 @@ export const projects = [
       "AI-powered esports coaching platform that simulates structured training sessions to improve player decision-making, gameplay habits, and mindset.",
     stack: ["Next.js", "Gemini AI"],
     image: "/images/projects/ai_esport_training_companion.png",
-    liveDemo: "https://ai-esports-training-companion.vercel.app/",
+    liveDemo: "https://esports-training-companion.hidayatmauluddin.my.id/",
     links: [
       {
         label: "Github",
