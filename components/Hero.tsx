@@ -38,17 +38,17 @@ export function Hero() {
           </div>
 
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-            Building scalable
-            <span className="text-gradient"> web applications</span>
+            Crafting fast, scalable,
+            <span className="text-gradient"> production-grade</span>
             <br />
-            with modern technologies.
+            web applications.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
             I'm{" "}
             <span className="text-foreground font-medium">
               Hidayat Mauluddin
             </span>{" "}
-            — a Full-Stack Web Developer building scalable and high-performance
+            - a Full-Stack Web Developer building scalable and high-performance
             web applications with Next.js, React, Node.js, and MySQL.
             Specialized in secure backend architecture, REST APIs, and
             AI-powered integrations that create smarter digital experiences.
