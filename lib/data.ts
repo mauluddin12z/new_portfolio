@@ -153,27 +153,8 @@ export const projects = [
     ],
     accent: "from-sky-400/30 to-indigo-500/10",
   },
-
   {
-    title: "Isuzu Salesperson Website",
-    tag: "Company Website",
-    year: "2022",
-    blurb:
-      "Automotive product showcase and inquiry management platform built to help sales representatives organize vehicle catalogs, manage customer leads, and improve sales communication workflows.",
-    stack: ["CodeIgniter", "MySQL"],
-    image: "/images/projects/isuzu_sumsel.png",
-    liveDemo: "https://isuzu-sumsel.hidayatmauluddin.my.id",
-    links: [
-      {
-        label: "Fullstack",
-        url: "https://github.com/mauluddin12za/isuzu-sumsel",
-      },
-    ],
-    accent: "from-stone-400/30 to-zinc-500/10",
-  },
-
-  {
-    title: "Store Finder UI/UX",
+    title: "Store Finder",
     tag: "Frontend Project",
     year: "2024",
     blurb:
@@ -192,6 +173,23 @@ export const projects = [
       },
     ],
     accent: "from-lime-400/30 to-green-500/10",
+  },
+  {
+    title: "Isuzu Salesperson Website",
+    tag: "Company Website",
+    year: "2022",
+    blurb:
+      "Automotive product showcase and inquiry management platform built to help sales representatives organize vehicle catalogs, manage customer leads, and improve sales communication workflows.",
+    stack: ["CodeIgniter", "MySQL"],
+    image: "/images/projects/isuzu_sumsel.png",
+    liveDemo: "https://isuzu-sumsel.hidayatmauluddin.my.id",
+    links: [
+      {
+        label: "Fullstack",
+        url: "https://github.com/mauluddin12za/isuzu-sumsel",
+      },
+    ],
+    accent: "from-stone-400/30 to-zinc-500/10",
   },
 ];
 
